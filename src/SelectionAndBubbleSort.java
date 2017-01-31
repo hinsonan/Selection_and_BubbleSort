@@ -29,10 +29,27 @@ public class SelectionAndBubbleSort {
 		//sort the array using bubble sort
 		BubbleSort(array);
 		
+		System.out.println("");
+		System.out.println("");
+		
+		System.out.println("Bubble Sorted Array");
+		
 		//prints the values of the array
 		for(int n: array){
 			System.out.println(n);
 		}
+		
+		System.out.println("");
+		System.out.println("");
+		
+		//sorts array by selection sorting
+		SelectionSort(array);
+		
+		//prints the values of the array
+		for(int n: array){
+			System.out.println(n);
+		}
+		
 		
 		
 	}//End of Main
@@ -58,9 +75,25 @@ public class SelectionAndBubbleSort {
                         
           }
         }
+        
 	}//End of Bubble Sort Method
 	
 	private static void SelectionSort(int[] selectArray){
+		int temp;
+		int n = selectArray.length;
+		for(int i = 0; i < (n - 2); i++ ){
+			int min = i;
+			for (int j = i; j < (n -1); j++){
+				if (selectArray[j] < selectArray[min]){
+					min = j;
+				}
+				//swap the values
+				temp = selectArray[min];
+				selectArray[i] = temp;
+				selectArray[min] = selectArray[i];
+				
+			}
+		}
 		
 	}
 }
