@@ -1,7 +1,7 @@
 import java.util.Random;
 import java.util.Scanner;
 
-public class SelectionAndBubbleSort {
+public class Sorts {
 	
 	
 	public static void main(String args[]){
@@ -12,13 +12,14 @@ public class SelectionAndBubbleSort {
 		
 		int size = scan.nextInt();
 		
-		int[] array = new int[size*5];
+		int[] array = new int[size];
 		
 		//this loop will fill the array with values
 		for(int i = 0; i < array.length; i++){
 			//put random numbers into the array
 			Random rand = new Random();
-			array[i] = rand.nextInt(1000);
+			//makes the random numbers 5 times the size of the array the user wants
+			array[i] = rand.nextInt((size*5)) + 1;
 		}
 		
 		//prints the values of the array
