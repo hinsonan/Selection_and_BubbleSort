@@ -12,19 +12,16 @@ public class Sorts {
 		
 		int size = scan.nextInt();
 		
-		int[] array = new int[size];
+		System.out.println("");
+		System.out.println("");
 		
-		//this loop will fill the array with values
-		for(int i = 0; i < array.length; i++){
-			//put random numbers into the array
-			Random rand = new Random();
-			//makes the random numbers 5 times the size of the array the user wants
-			array[i] = rand.nextInt((size*5)) + 1;
-		}
+		//creates array based on the user input
+		int[] array = createIntArray(size);
 		
+		System.out.println("Unsorted Array");
 		//prints the values of the array
 		for(int n: array){
-			System.out.println(n);
+			System.out.print(n + " ");
 		}
 		
 		//sort the array using bubble sort
@@ -37,18 +34,32 @@ public class Sorts {
 		
 		//prints the values of the array
 		for(int n: array){
-			System.out.println(n);
+			System.out.print(n + " ");
 		}
 		
 		System.out.println("");
 		System.out.println("");
 		
-		//sorts array by selection sorting
-		SelectionSort(array);
+		int[] arrayTwo = createIntArray(size);
 		
-		//prints the values of the array
-		for(int n: array){
-			System.out.println(n);
+		System.out.println("Unsorted array");
+		
+		//prints the values of the unsorted array
+		for(int n: arrayTwo){
+			System.out.print(n + " ");
+		}
+		
+		System.out.println("");
+		System.out.println("");
+		
+		System.out.println("Selection Sorted Array");
+		
+		//sorts array by selection sorting
+		SelectionSort(arrayTwo);
+		
+		//prints the values of the sorted array
+		for(int n: arrayTwo){
+			System.out.print(n + " ");
 		}
 		
 		
@@ -57,44 +68,71 @@ public class Sorts {
 	
 	private static void BubbleSort(int[] bubArray){
 		
-		//make a variable that contains the length of the array since it will used a lot
+		// make a variable that contains the length of the array since it will used a lot
 		int n = bubArray.length;
-		//have a temp value so i can swap values with it
+		// have a temp value so i can swap values with it
         int temp = 0;
         
-        //iterates the length of the array
+        // iterates the length of the array
         for(int i=0; i < n; i++){
-        	//iterates one less than the array so it doesn't sort the last number because it will already be sorted
+        	// initializes a swap value to make the algorithm more efficient by not sorting if the array had no swaps
+        	int swap = 0;
+        	// iterates one less than the array so it doesn't sort the last number because it will already be sorted
         	for(int j=1; j < (n-i); j++){        		
-                //if the value before j is bigger than swap the values        
+                // if the value before j is bigger than swap the values        
                 if(bubArray[j-1] > bubArray[j]){
-                    //swap the numbers
+                    // swap the numbers
                     temp = bubArray[j-1];
                     bubArray[j-1] = bubArray[j];
                     bubArray[j] = temp;
+                    swap++;
                }
                         
           }
+        	// if there are no swaps then exit the loop
+        	if(swap == 0){
+        		break;
+        	}
         }
         
 	}//End of Bubble Sort Method
 	
 	private static void SelectionSort(int[] selectArray){
-		int temp;
-		int n = selectArray.length;
-		for(int i = 0; i < (n - 2); i++ ){
-			int min = i;
-			for (int j = i; j < (n -1); j++){
-				if (selectArray[j] < selectArray[min]){
-					min = j;
-				}
-				//swap the values
-				temp = selectArray[min];
-				selectArray[i] = temp;
-				selectArray[min] = selectArray[i];
-				
-			}
-		}
 		
+		int n = selectArray.length;
+		
+		 for (int i = 0; i < n - 1; i++)
+	        {
+			 	//stores the index of the value of i
+	            int index = i;
+	            for (int j = i + 1; j < n; j++)
+	            	// if the array at index j is less than the array at index then index = j
+	                if (selectArray[j] < selectArray[index]){
+	                	index = j;
+	                }
+	                    
+	            // this smaller number is equal to the array at index
+	            int smallerNumber = selectArray[index]; 
+	            // makes the value at index equal value at index i
+	            selectArray[index] = selectArray[i];
+	            // value at index i will now be the value of the smaller number
+	            selectArray[i] = smallerNumber;
+	        }
+	        
+	    }
+	
+		
+	
+	private static int[] createIntArray(int size){
+		int[] array = new int[size];
+		
+		//this loop will fill the array with values
+		for(int i = 0; i < array.length; i++){
+			//put random numbers into the array
+			Random rand = new Random();
+			//makes the random numbers 5 times the size of the array the user wants
+			array[i] = rand.nextInt((size*5)) + 1;
+		}
+		return array;
 	}
 }
